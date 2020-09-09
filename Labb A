@@ -67,7 +67,5 @@ disp('i båda kolumnerna överensstämmer med det värde som corr(x,y) ger oss.'
 disp('Värdet ska tolkas som något negativ, dvs ju tyngre bil desto sämre acceleration.')
 
 disp('% Fråga 9')
-disp('Tyngdkraften')
-
-
-
+scatter(Weight,Displacement)
+disp('Vikt och förflyttning har en tydligt positiv korrelation, dvs ju tyngre bil desto större förflyttning')
