@@ -1,0 +1,18 @@
+function [A] = korrelation(x,y)
+% Funktion för korrelationskoefficienten enligt Stokastik för ingenjörer s. 17
+    X=mean(x);      % Medelvärdet för x
+    Y=mean(y);      % Medelvärdet för y
+    n=length(x);    % antalet observationer
+    B=0;            % Övre delen (summan av (avvikelser för x, resp y multiplicerat med varandra))
+    for k=1:n
+        B=B+((x(k,:)-X)*(y(k,:)-Y));
+    end
+    C=0;
+    D=0;
+    for k=1:n
+        C=C+((x(k,:)-X).^2);
+        D=D+((y(k,:)-Y).^2);
+    end
+    E=(sqrt(C))*(sqrt(D));  % Nedre delen (roten ur ((summan av avvikelserna) i kvadrat))
+    A=(B/E);
+end

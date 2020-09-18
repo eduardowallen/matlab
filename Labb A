@@ -59,7 +59,12 @@ disp('% Fråga 8 %')
 disp('Korrelation enl. MATLAB')
 corr(Weight, Acceleration)
 disp('Baserat på Pearsons korrelationskoefficient')
+% Detta var mitt initiala svar
 (cov(Weight,Acceleration))/(std(Weight)*std(Acceleration))
+% Sedan fick jag höra att denna funktion ska skrivas på egen hand.
+% Jag har skrivit funktionen korrelation(x,y) för detta i korrelation.m
+korrelation(Weight, Acceleration)
+
 
 disp('I vår egen funktion använder vi cov(x,y) som ger tillbaka en 2x2-matris.')
 disp('Det värde vi kan se för den parvisa kovarians som sker i 1x2 och 2x1 (-0.4301)')
@@ -69,3 +74,6 @@ disp('Värdet ska tolkas som något negativ, dvs ju tyngre bil desto sämre acce
 disp('% Fråga 9')
 scatter(Weight,Displacement)
 disp('Vikt och förflyttning har en tydligt positiv korrelation, dvs ju tyngre bil desto större förflyttning')
+
+((5548-5936)^2)+((5697-5936)^2)+((5812-5936)^2)+((6003-5936)^2)+((6022-5936)^2)+((6074-5936)^2)+((6130-5936)^2)+((6201-5936)^2)
+
