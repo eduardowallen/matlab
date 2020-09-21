@@ -1,71 +1,65 @@
-% Fråga 2 
+%% Fråga 2
+
 disp('% Fråga 2 %')
-disp('a) Kvalitativ data')
-disp('b) Nej, data saknas för flera av variablarna')
+disp('a) Både kvalitativ och kvantitativ data. Är frågan korrekt ställd?')
+disp('b) Nej, data saknas för flera av variablarna') % Jag körde ismissing() på flera av tabellerna och hittade tomma rader.
 
-% Fråga 3
-disp('% Fråga 3 %')
-disp('Histogram för vikt med fem kategorier')
-histogram(Weight,5)
-disp('Lämpligt antal kategorier bör vara 5 eftersom antalet ton aldrig överstiger 6.')
+%% Fråga 3
+disp('Histogram för vikt med fem kategorier') 
+% Lämpligt antal är 20... Motivera varför.
+histogram(Weight,20)
 
-% Fråga 4
-disp('% Fråga 4 %')
-disp('I ett lådagram för vikten ser vi direkt vilken spridning datan har, till skillnad')
-disp('mot histogrammet där vi (om vi vill) kan gruppera in antal av data')
-disp('i klasser och åskådliggöra dessa efter behov.')
+
+%% Fråga 4
+% OBS! Titta på de olika diagrammen, läs i boken och formulera en egen förklaring till skillnaden mellan de två. 
+% Tips: median, medelvärde, typvärde
 boxplot(Weight)
 
-% Fråga 5
-disp('% Fråga 5 %')
-disp('Medianen för vikt enligt MATLAB:')
-median(Weight)
+%% Fråga 5
+% Var beredd på att förklara innebörden av dessa och varför de är relevanta.
+mean(Weight)    % Aritmetiskt medelvärde
+geomean(Weight) % Geometriskt medelvärde
+median(Weight)  % Median
+std(Weight)     % Standardavvikelse
+mode(Weight)    % Typvärde
+var(Weight)     % Varians
+range(Weight)   % Variationsbredd
 
-disp('Standardavvikelsen är 847')
-std(Weight)
-
-% Fråga 6
-disp('% Fråga 6 %')
+%% Fråga 6
 weights_total = 0;
 n = length(Weight);
 for k=1:n
     weights_total = weights_total+Weight(k,:);
 end
 weights_total
-disp('Median för vikt enl. egen funktion:')
-median_weight = (weights_total/n)
+disp('Medelvärde för vikt enl. egen funktion:')
+medelv = (weights_total/n)
 avvikelser = 0;
 for k=1:n
-    avvikelser = avvikelser+((Weight(k,:)-median_weight)^2);
+    avvikelser = avvikelser+((Weight(k,:)-medelv)^2);
 end
-standardavvikelse_vikt = sqrt(avvikelser/n)
-disp('Egen formel för standardavvikelsen för vikt ger ~846')
-disp('MATLABS standardavvikelse för vikt ger ~847')
+standardavvikelse_vikt = sqrt(avvikelser/(n-1))
 std(Weight)
+disp('Egen formel för standardavvikelsen för vikt ger ~847')
+disp('MATLABS standardavvikelse för vikt ger ~847')
 
-disp('Skillnaden mellan de båda är mycket liten och anledningen är troligtvis')
-disp('pga små avrundningar som sker vid iterationen som adderar termerna.')
-disp('Det går säkert att ordna om man ändrar en del i MATLABs inställningar.')
 
-% Fråga 7
-disp('% Fråga 7 %')
+%% Fråga 7
 disp('Spridningsdiagram för vikt och acceleration')
 scatter(Weight,Acceleration)
 disp('Vi ser att lutningen i diagrammet är negativt, vilket innebär att')
 disp('tyngre bilar har sämre acceleration än en lättare bil.')
 
-% Fråga 8
-disp('% Fråga 8 %')
+
+%% Fråga 8
 disp('Korrelation enl. MATLAB')
 corr(Weight, Acceleration)
-disp('Baserat på Pearsons korrelationskoefficient')
-(cov(Weight,Acceleration))/(std(Weight)*std(Acceleration))
-
-disp('I vår egen funktion använder vi cov(x,y) som ger tillbaka en 2x2-matris.')
-disp('Det värde vi kan se för den parvisa kovarians som sker i 1x2 och 2x1 (-0.4301)')
-disp('i båda kolumnerna överensstämmer med det värde som corr(x,y) ger oss.')
+% Jag har skrivit funktionen korrelation(x,y) för detta i filen korrelation.m
+korrelation(Weight, Acceleration)
 disp('Värdet ska tolkas som något negativ, dvs ju tyngre bil desto sämre acceleration.')
 
-disp('% Fråga 9')
+
+%% Fråga 9
 scatter(Weight,Displacement)
 disp('Vikt och förflyttning har en tydligt positiv korrelation, dvs ju tyngre bil desto större förflyttning')
+
